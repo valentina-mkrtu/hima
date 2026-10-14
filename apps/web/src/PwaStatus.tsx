@@ -1,0 +1,10 @@
+import {isAndroidApp} from './native';
+import {useEffect,useState} from 'react';
+export function PwaStatus({canUpdate}:{canUpdate:boolean}){const [registration,setRegistration]=useState<ServiceWorkerRegistration>(),[waiting,setWaiting]=useState(false),[ready,setReady]=useState(false),[failed,setFailed]=useState(false);
+ useEffect(()=>{if(isAndroidApp()||!('serviceWorker' in navigator)||!import.meta.env.PROD)return;let alive=true;const message=(e:MessageEvent)=>{if(e.data?.type==='DAYWEAVE_OFFLINE_READY'&&alive)setReady(true);};navigator.serviceWorker.addEventListener('message',message);navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(r=>{if(!alive)return;setRegistration(r);setWaiting(!!r.waiting);r.active?.postMessage({type:'STATUS'});r.addEventListener('updatefound',()=>{r.installing?.addEventListener('statechange',()=>{if(alive){setWaiting(!!r.waiting);r.active?.postMessage({type:'STATUS'});}});});navigator.serviceWorker.ready.then(active=>active.active?.postMessage({type:'STATUS'}));}).catch(()=>setFailed(true));return ()=>{alive=false;navigator.serviceWorker.removeEventListener('message',message);};},[]);
+ if(isAndroidApp())return <span className="offline-ready">Android test build · saved on this device</span>;
+ if(!import.meta.env.PROD)return <span className="offline-ready">Development preview · offline setup is available in a production build</span>;
+ if(waiting&&canUpdate)return <div className="connection-banner">An app update is ready. Your device data stays here.<button className="text-button" onClick={()=>{navigator.serviceWorker.addEventListener('controllerchange',()=>location.reload(),{once:true});registration?.waiting?.postMessage({type:'ACTIVATE'});}}>Update app</button></div>;
+ if(failed)return <div className="connection-banner">Offline setup failed. Keep this page open and reconnect to try again.</div>;
+ return <span className="offline-ready" role="status">{ready?'Ready offline · data stays on this device':'Preparing offline access…'}</span>;
+}

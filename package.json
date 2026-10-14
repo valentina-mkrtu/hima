@@ -1,0 +1,35 @@
+{
+  "name": "dayweave",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.8.0"
+  },
+  "scripts": {
+    "dev": "vite --config apps/web/vite.config.ts --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build --config apps/web/vite.config.ts && node scripts/build-offline.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check": "tsc --noEmit",
+    "prototype": "node scripts/start.mjs"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "0.34.52",
+    "luxon": "3.7.2",
+    "marked": "18.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "3.7.6",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "fake-indexeddb": "6.2.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.3"
+  }
+}

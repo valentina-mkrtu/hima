@@ -1,0 +1,18 @@
+import {readdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+const root=resolve(import.meta.dirname,'../dist/web');
+const htmlPath=resolve(root,'index.html');
+const policy="default-src 'none'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' blob: data:; connect-src 'self' https://www.googleapis.com https://accounts.google.com/gsi/ https://oauth2.googleapis.com; frame-src https://accounts.google.com/gsi/; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'";
+await writeFile(htmlPath,(await readFile(htmlPath,'utf8')).replace('<head>','<head><meta http-equiv="Content-Security-Policy" content="'+policy+'">'));
+const assets=(await readdir(resolve(root,'assets'))).map(name=>'/assets/'+name);
+const urls=['/','/index.html','/manifest.webmanifest','/apple-touch-icon.png','/icon-192.png','/icon-512.png',...assets];
+const version=createHash('sha256').update(await readFile(resolve(root,'index.html'))).update('local-device-v1').digest('hex').slice(0,16);
+const source=`const CACHE='dayweave-device-${version}', URLS=${JSON.stringify(urls)};
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(URLS))));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{await self.clients.claim();for(const key of await caches.keys())if((key.startsWith('dayweave-device-')||key.startsWith('dayweave-public-'))&&key!==CACHE)await caches.delete(key);for(const client of await self.clients.matchAll())client.postMessage({type:'DAYWEAVE_OFFLINE_READY'});})()));
+self.addEventListener('message',event=>{if(event.data?.type==='ACTIVATE')self.skipWaiting();if(event.data?.type==='STATUS')event.waitUntil(caches.open(CACHE).then(async cache=>{if(await cache.match('/'))event.source?.postMessage({type:'DAYWEAVE_OFFLINE_READY'});}));});
+self.addEventListener('fetch',event=>{const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;if(event.request.method!=='GET'){event.respondWith(Promise.resolve(new Response('Local app: no server writes',{status:405})));return;}if(url.pathname.startsWith('/api/')){event.respondWith(Promise.resolve(new Response('No backend is used',{status:410})));return;}if(event.request.mode==='navigate'){event.respondWith(caches.open(CACHE).then(cache=>cache.match('/')));return;}if(URLS.includes(url.pathname))event.respondWith(caches.open(CACHE).then(async cache=>(await cache.match(url.pathname))||fetch(event.request)));});
+`;
+await writeFile(resolve(root,'sw.js'),source);
+console.log(`Offline shell: ${urls.length} public files, version ${version}. No planner data is cached here.`);

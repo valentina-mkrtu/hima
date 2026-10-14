@@ -1,0 +1,422 @@
+{
+  "format": "dayweave-plan",
+  "version": 1,
+  "title": "European university \u00b7 2027 starter plan",
+  "items": [
+    {
+      "id": "education",
+      "kind": "area",
+      "data": {
+        "name": "Study & future",
+        "description": "European study in autumn 2027; verify each programme and scholarship independently.",
+        "icon": "\u2726",
+        "color": "#756292",
+        "archived": false
+      }
+    },
+    {
+      "id": "constraints",
+      "kind": "task",
+      "data": {
+        "title": "Write my study constraints and funding needs",
+        "description": "Record degree level, subjects, citizenship/residence, academic background, budget, language level and available hours each week. Define full funding: tuition, living costs, travel and other costs. These facts determine eligibility.",
+        "areaId": "education",
+        "planDate": "2026-10-12",
+        "dueDate": "2026-10-13",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 30,
+        "checklist": [],
+        "dependencies": [],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "research",
+      "kind": "task",
+      "data": {
+        "title": "Shortlist programmes and full-funding routes",
+        "description": "Use official university and scholarship sources. Record eligibility, tuition coverage, living support, accepted exams and deadlines. Continue across multiple sessions as needed; 45 minutes is a first research session, not the full effort.",
+        "areaId": "education",
+        "planDate": "2026-10-13",
+        "dueDate": "2026-10-19",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [
+          "constraints"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "deadlines",
+      "kind": "task",
+      "data": {
+        "title": "Verify every admission and scholarship deadline",
+        "description": "January is a planning assumption, not a verified application window. Some deadlines may be earlier. Add confirmed dates and source URLs to the tracker, then create separate submission tasks per institution.",
+        "areaId": "education",
+        "planDate": "2026-10-14",
+        "dueDate": "2026-10-20",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "english_baseline",
+      "kind": "task",
+      "data": {
+        "title": "Check accepted English exams and assess my starting level",
+        "description": "Confirm accepted tests and score requirements for candidate programmes. Use a practice assessment to identify gaps. Do not assume a high score is achievable within a month without checking the starting point.",
+        "areaId": "education",
+        "planDate": "2026-10-13",
+        "dueDate": "2026-10-15",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "exam_funding",
+      "kind": "task",
+      "data": {
+        "title": "Confirm exam availability, fee and a funding plan",
+        "description": "Record the real fee, available savings, payment deadline, result turnaround and available slots. Add a budget row only after verifying the fee. Adjust the personal target if needed.",
+        "areaId": "education",
+        "planDate": "2026-10-15",
+        "dueDate": "2026-10-18",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 30,
+        "checklist": [],
+        "dependencies": [
+          "english_baseline"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "book_exam",
+      "kind": "task",
+      "data": {
+        "title": "Book a suitable English exam once funded",
+        "description": "Only book after confirming test acceptance, available date, funds and result timing. The app does not make bookings or payments.",
+        "areaId": "education",
+        "planDate": "2026-10-19",
+        "dueDate": "2026-10-22",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 30,
+        "checklist": [],
+        "dependencies": [
+          "exam_funding"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "documents",
+      "kind": "task",
+      "data": {
+        "title": "Inventory documents and request long-lead items",
+        "description": "Verify institution-specific requirements. Track transcripts, translations/certification, recommendations, identity documents, CV and statements only where required. Give each requested item an owner, status and follow-up task.",
+        "areaId": "education",
+        "planDate": "2026-10-16",
+        "dueDate": "2026-10-23",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "practice_review",
+      "kind": "task",
+      "data": {
+        "title": "Review English practice results and adjust the plan",
+        "description": "Compare practice results with required scores; choose the next focus and decide whether the exam target is still realistic.",
+        "areaId": "education",
+        "planDate": "2026-10-26",
+        "dueDate": "2026-10-27",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 30,
+        "checklist": [],
+        "dependencies": [
+          "english_baseline"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "exam",
+      "kind": "task",
+      "data": {
+        "title": "Take the booked English exam \u2014 personal target",
+        "description": "November 12 is the user-approved target, not a confirmed test booking. Replace it with the actual booking date. Record scores and result release date in the linked notes.",
+        "areaId": "education",
+        "planDate": "2026-11-12",
+        "dueDate": "2026-11-12",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 0,
+        "checklist": [],
+        "dependencies": [
+          "book_exam"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "drafts",
+      "kind": "task",
+      "data": {
+        "title": "Draft CV, statements and required scholarship responses",
+        "description": "Start with one focused writing session. Break each institution-specific draft into its own task after selection.",
+        "areaId": "education",
+        "planDate": "2026-10-28",
+        "dueDate": "2026-11-13",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [
+          "research"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "review_pack",
+      "kind": "task",
+      "data": {
+        "title": "Review documents, drafts and English result timing",
+        "description": "Check each application against its official checklist; request feedback, fill gaps and schedule missing items. Ensure exam results will arrive in time.",
+        "areaId": "education",
+        "planDate": "2026-11-16",
+        "dueDate": "2026-11-23",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [
+          "documents",
+          "drafts"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "ready",
+      "kind": "task",
+      "data": {
+        "title": "Complete my application-ready check",
+        "description": "December 1 is a personal readiness target. Check documents, essays, scores, recommendations and verified submission deadlines. Being prepared is not the same as being admitted.",
+        "areaId": "education",
+        "planDate": "2026-11-27",
+        "dueDate": "2026-12-01",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [
+          "review_pack"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "submit",
+      "kind": "task",
+      "data": {
+        "title": "Submit each application before its verified deadline",
+        "description": "January 4\u20138 is a provisional personal work block, NOT a university deadline. Replace this umbrella task with one task per confirmed admission and scholarship deadline; submit earlier when required. Save confirmation IDs.",
+        "areaId": "education",
+        "planDate": "2027-01-04",
+        "dueDate": "2027-01-08",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 45,
+        "checklist": [],
+        "dependencies": [
+          "ready"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "followup",
+      "kind": "task",
+      "data": {
+        "title": "Check confirmations and set response follow-ups",
+        "description": "Record expected response dates only if published or communicated. Create dated follow-up tasks for every application. Verify offers and actual funding before marking the outcome achieved.",
+        "areaId": "education",
+        "planDate": "2027-01-11",
+        "dueDate": "2027-01-12",
+        "status": "todo",
+        "priority": "normal",
+        "minutes": 30,
+        "checklist": [],
+        "dependencies": [
+          "submit"
+        ],
+        "resultText": "",
+        "routineId": "",
+        "occurrenceKey": ""
+      }
+    },
+    {
+      "id": "research_notes",
+      "kind": "note",
+      "data": {
+        "title": "University research & decisions",
+        "body": "# Source-based research\n\nRecord each university, programme, scholarship, eligibility, tuition/living-cost coverage, official links, source-check date, admission deadline, scholarship deadline and accepted English tests.\n\nNo universities, external deadlines, scores or fees have been verified in this starter plan.\n\nUse Edit goal \u2192 Application tracker for comparison rows and CSV export. Create separate dated tasks for action deadlines.",
+        "areaId": "education",
+        "pinned": false
+      }
+    },
+    {
+      "id": "documents_note",
+      "kind": "note",
+      "data": {
+        "title": "Documents & costs to verify",
+        "body": "# Document inventory\n\n| Item | Required by | Requested on | Status | Follow-up |\n| --- | --- | --- | --- | --- |\n| To verify | | | | |\n\nAttach files to this note after saving.\n\n# Costs\n\nVerify exam fees, application fees, translations and any other required costs. Record confirmed amounts and savings in the goal Budget. Unknown fees remain unknown; do not assume zero.",
+        "areaId": "education",
+        "pinned": false
+      }
+    },
+    {
+      "id": "assumptions",
+      "kind": "note",
+      "data": {
+        "title": "Targets, assumptions & weekly review",
+        "body": "# My desired outcome\n\nStart a European university programme with full funding in September/October 2027.\n\n# Personal targets\n\n- English exam: November 12, 2026. Not a confirmed booking.\n- Application-ready: December 1, 2026.\n- January 2027 submissions: a provisional plan; verify every actual deadline now.\n- September 1, 2027 goal date: planning placeholder within the intended autumn intake, not an official start date.\n\n# Still to establish\n\nDegree level, country/major preferences, eligibility, current English level, available study hours, existing savings and actual costs. The first tasks resolve these. Estimated task minutes are editable first-session estimates, not total project effort. No practice routine is imposed until availability is known.\n\n# Weekly review\n\nWhat moved forward? What is waiting on someone else? What slipped? What is the smallest realistic next action? Schedule only work that fits the coming week.\n\nAn application, exam score or checklist cannot guarantee admission or funding. Confirm actual offers and coverage before recording success.",
+        "areaId": "education",
+        "pinned": true
+      }
+    },
+    {
+      "id": "study_goal",
+      "kind": "goal",
+      "data": {
+        "title": "Fully funded European study \u00b7 autumn 2027",
+        "areaId": "education",
+        "mode": "tasks",
+        "target": 1,
+        "unit": "",
+        "taskIds": [
+          "constraints",
+          "research",
+          "deadlines",
+          "english_baseline",
+          "exam_funding",
+          "book_exam",
+          "documents",
+          "practice_review",
+          "exam",
+          "drafts",
+          "review_pack",
+          "ready",
+          "submit",
+          "followup"
+        ],
+        "checklist": [],
+        "entries": [],
+        "plan": {
+          "why": "Turn my research into consistent action toward admission and full funding, while keeping real deadlines, documents and costs visible.",
+          "targetDate": "2027-09-01",
+          "reviewDate": "2026-10-19",
+          "outcome": "working",
+          "milestones": [
+            {
+              "id": "shortlist",
+              "title": "Choose programmes & verify funding",
+              "dueDate": "2026-10-20",
+              "taskIds": [
+                "constraints",
+                "research",
+                "deadlines"
+              ]
+            },
+            {
+              "id": "english",
+              "title": "English exam readiness",
+              "dueDate": "2026-11-12",
+              "taskIds": [
+                "english_baseline",
+                "exam_funding",
+                "book_exam",
+                "practice_review",
+                "exam"
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "Application pack ready",
+              "dueDate": "2026-12-01",
+              "taskIds": [
+                "documents",
+                "drafts",
+                "review_pack",
+                "ready"
+              ]
+            },
+            {
+              "id": "apply",
+              "title": "Submit & follow through",
+              "dueDate": "2027-01-12",
+              "taskIds": [
+                "submit",
+                "followup"
+              ]
+            }
+          ],
+          "noteIds": [
+            "research_notes",
+            "documents_note",
+            "assumptions"
+          ],
+          "routineIds": [],
+          "applications": [],
+          "costs": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "dayweave",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.8.0"
+  },
+  "scripts": {
+    "dev": "vite --config apps/web/vite.config.ts --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build --config apps/web/vite.config.ts",
+    "start": "tsx apps/server/main.ts",
+    "db:start": "node scripts/database.mjs start",
+    "db:stop": "node scripts/database.mjs stop",
+    "db:migrate": "tsx packages/db/migrate.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "tsc --noEmit",
+    "prototype": "node scripts/start.mjs"
+  },
+  "dependencies": {
+    "@fastify/cookie": "11.1.2",
+    "@fastify/multipart": "10.1.2",
+    "@fastify/rate-limit": "11.2.0",
+    "@fastify/static": "10.1.5",
+    "@sinclair/typebox": "0.34.52",
+    "fastify": "5.12.5",
+    "luxon": "3.7.2",
+    "marked": "18.1.0",
+    "pg": "8.23.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "3.7.6",
+    "@types/node": "26.6.4",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "fake-indexeddb": "6.2.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.3"
+  }
+}

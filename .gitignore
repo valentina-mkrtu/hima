@@ -1,0 +1,25 @@
+node_modules/
+.runtime/
+dist/
+.env
+*.log
+
+# Device data, credentials and signing material
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.pem
+*.key
+.DS_Store
+
+# Generated Android bundles and test downloads
+android/build/
+android/app/src/main/assets/web/
+*.apk
+*.idsig
+*.apk.sha256
+
+# Local UI verification screenshots (may contain personal planner content)
+/*.png
+mockup/preview-*.png

@@ -1,0 +1,11 @@
+// Optional local static preview only. Deployment needs these files, not this server.
+import {createServer} from 'node:http';
+import {readFile,stat} from 'node:fs/promises';
+import {resolve,extname,sep} from 'node:path';
+const root=resolve(import.meta.dirname,'../dist/web');
+const types={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'};
+const csp="default-src 'none'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' blob: data:; connect-src 'self' https://www.googleapis.com https://accounts.google.com/gsi/ https://oauth2.googleapis.com; frame-src https://accounts.google.com/gsi/; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'";
+createServer(async(req,res)=>{res.setHeader('Content-Security-Policy',csp);res.setHeader('Cross-Origin-Opener-Policy','same-origin-allow-popups');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');res.setHeader('X-Frame-Options','DENY');res.setHeader('Cache-Control','no-cache');res.setHeader('Set-Cookie','dayweave_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict');
+ if(!['127.0.0.1:8787','localhost:8787'].includes(req.headers.host||'')){res.writeHead(403);res.end();return;}if(!['GET','HEAD'].includes(req.method||'')){res.writeHead(405);res.end();return;}
+ try{const pathname=decodeURIComponent(new URL(req.url,'http://127.0.0.1:8787').pathname);const relative=pathname==='/'?'index.html':pathname.slice(1);const path=resolve(root,relative);if(!path.startsWith(root+sep)||!types[extname(path)])throw new Error('Not a public file');const info=await stat(path);if(!info.isFile())throw new Error('Not a file');res.setHeader('Content-Type',types[extname(path)]);res.setHeader('Content-Length',info.size);res.writeHead(200);res.end(req.method==='HEAD'?undefined:await readFile(path));}catch{res.writeHead(404);res.end('Not found');}
+}).listen(8787,'127.0.0.1',()=>console.log('Dayweave device app: http://127.0.0.1:8787 — static files only; no database or API.'));

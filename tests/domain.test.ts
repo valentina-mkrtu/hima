@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {occurrenceDates,validateTask,progress} from '../packages/domain/index.js';
+import {emptyTask,type Entity,type Task,type Routine} from '../packages/contracts/index.js';
+const row=(id:string,data:Partial<Task>={}):Entity<Task>=>({id,kind:'task',version:1,createdAt:'',updatedAt:'',deletedAt:null,data:{...emptyTask(),...data}});
+const rule:Routine={title:'Read',areaId:'',start:'2024-01-31',end:'',frequency:'monthly',interval:1,weekdays:[],monthDay:31,lastDay:false,paused:false,resumeDate:'',timezone:'America/New_York'};
+test('monthly recurrence skips missing days and supports last day',()=>{assert.deepEqual(occurrenceDates(rule,'2024-01-01','2024-04-30'),['2024-01-31','2024-03-31']);assert.deepEqual(occurrenceDates({...rule,lastDay:true},'2024-01-01','2024-04-30'),['2024-01-31','2024-02-29','2024-03-31','2024-04-30']);});
+test('date-only daily recurrence survives DST, pause and resume do not backfill',()=>{assert.equal(occurrenceDates({...rule,start:'2024-03-08',frequency:'daily'},'2024-03-08','2024-03-12').length,5);assert.deepEqual(occurrenceDates({...rule,paused:true},'2024-01-01','2024-04-30'),[]);assert.deepEqual(occurrenceDates({...rule,resumeDate:'2024-02-01'},'2024-01-01','2024-04-30'),['2024-03-31']);});
+test('cycles and blocked transitions are refused',()=>{const a=row('a',{dependencies:['b']}),b=row('b');assert.throws(()=>validateTask(row('b',{dependencies:['a']}),[a,b]),/loop/);assert.throws(()=>validateTask({...a,data:{...a.data,status:'done'}},[a,b]),/prerequisites/);assert.doesNotThrow(()=>validateTask({...a,data:{...a.data,status:'done'}},[a,{...b,data:{...b.data,status:'done'}}]));});
+test('numeric progress avoids binary rounding and preserves overflow',()=>{const base={title:'Read',areaId:'',mode:'numeric' as const,target:.2,unit:'hours',taskIds:[],checklist:[],entries:[{id:'a',date:'2026-01-01',amount:.1,note:''},{id:'b',date:'2026-01-02',amount:.2,note:''}]};assert.deepEqual(progress(base,[]),{current:.3,target:.2,percent:100});});
