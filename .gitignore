@@ -23,3 +23,6 @@ android/app/src/main/assets/web/
 # Local UI verification screenshots (may contain personal planner content)
 /*.png
 mockup/preview-*.png
+
+# Latest installable Android test build, linked from README
+!downloads/hima-0.3.3-test.apk

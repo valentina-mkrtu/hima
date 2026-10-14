@@ -6,6 +6,14 @@ A crossover between task management and life productivity: turn life goals into 
 
 hima now runs as a static React/TypeScript app. Tasks, notes, calendar events, routines, goals, settings, and attachment bytes live in IndexedDB in your browser profile. There are no accounts, API, PostgreSQL dependency, analytics, or cloud synchronization in the active app.
 
+## Download for Android
+
+[**Download hima 0.3.3-test for Android (.apk)**](https://github.com/valentina-mkrtu/hima/raw/refs/heads/main/downloads/hima-0.3.3-test.apk)
+
+Requires Android 8.0 or newer. Open the downloaded APK on your phone and allow installation from your browser or file manager when Android asks. If you already have a hima test build, install this over it; do not uninstall first, as uninstalling removes local app data. Export a backup before updating.
+
+This is a test build, not a Play Store release. Google Calendar connection is not yet available in the Android build. See [Android testing instructions](downloads/ANDROID-TESTING.md) for details.
+
 ## Run or build
 
 ```sh
